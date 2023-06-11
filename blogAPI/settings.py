@@ -34,6 +34,12 @@ INSTALLED_APPS = [
 
     # third party apps
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
     # django default apps
     'django.contrib.admin',
@@ -127,5 +133,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # project level authentication
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [  # new
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ],
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # new
+SITE_ID = 1  # new
